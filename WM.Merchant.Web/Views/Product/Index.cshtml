@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Sản phẩm</h2>
+@using (Html.BeginForm("Confirm", "Product", FormMethod.Post))
+{
+<div class="row">
+    <div class="col-md-3">
+        <img src="images/iphone6s.png">
+    </div>
+    <div class="col-md-9">
+        <p class="text-primary"><b>Apple IPhone 6S 64GB</b></p>
+        <p class="text-danger">
+            <span><b>Giá:</b> </span>
+            100 VNĐ
+        </p>
+        <p>
+            Với những người dùng yêu thích điện thoại iPhone, chắc hẳn hầu hết đều có thói quen lưu giữ một lượng lớn hình ảnh cũng như video clip cá nhân trong máy để có thể xem lại bất cứ lúc nào những khoảnh khắc đáng nhớ mình đã trải qua trong cuộc sống. Đặc biệt với iPhone 6s, chiếc điện thoại mới nhất của&nbsp; Apple nay đã được hãng này nâng cấp camera lên đến 12MP, camera trước 5MP cùng nhiều công nghệ chụp ảnh mới thì chắc chắn số lượng hình ảnh mà bạn cần lưu giữ sẽ tăng lên gấp bội. Như vậy chúng ta cần có một chiếc điện thoại với bộ nhớ trong lớn hơn nữa vì iPhone không hỗ trợ thẻ nhớ ngoài nên phiên bản iPhone 6s 64GB này là lựa chọn sáng suốt.
+        </p>
+        <p>
+        </p><form action="purchase.php" method="GET">
+            <input type="hidden" name="product_code" value="iphone6s">
+            <button class="btn btn-primary" type="submit">
+                Mua Ngay
+            </button>
+        </form>
+        <p></p>
+    </div>
+</div>
+}

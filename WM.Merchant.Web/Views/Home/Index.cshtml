@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h2><b>Webmoney Vietnam Merchant C# Sample Code</b></h2>
+    <p>&nbsp;</p>
+    <p>Đây là thư viện sample code để tích hợp giao tiếp với cổng thanh toán Webmoney Merchant API, dành cho các đối tác của Webmoney Vietnam</p>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <h2>Yêu cầu</h2>
+        <p>NET Framework 4.5.2</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <h2>Hướng dẫn sử dụng</h2>
+        <p>Build project WM.Merchant. Add reference vào project web của bạn Thư viện sẽ yêu cầu một số thông tin chứng thực API, bao gồm Passcode và Secret Key, được cung cấp bởi Webmoney</p>
+        <p>Thêm và chỉnh sửa một số thông tin trong Web.config</p>
+    </div>
+</div>
+<pre>&lt;configuration&gt;
+    &lt;configSections&gt;
+        ...
+        &lt;section name=<span class="pl-s"><span class="pl-pds">"</span>wmMerchant<span class="pl-pds">"</span></span> type=<span class="pl-s"><span class="pl-pds">"</span>WM.Merchant.MerchantConfiguration<span class="pl-pds">"</span></span> /&gt;
+    &lt;/configSections&gt;
+    ...
+    &lt;wmMerchant&gt;
+        &lt;wmService merchantCode="<span class="text-danger">YOUR MERCHANT CODE</span>" passcode=<span class="pl-s"><span class="pl-pds">"</span><span class="text-danger">YOUR PASSCODE</span><span class="pl-pds">"</span></span> secretKey=<span class="pl-s"><span class="pl-pds">"</span><span class="text-danger">YOUR SECRET KEY</span><span class="pl-pds">"</span></span> productionMode=<span class="pl-s"><span class="pl-pds">"</span><span class="text-danger">false</span><span class="pl-pds">"</span></span> /&gt;
+    &lt;/wmMerchant&gt;
+&lt;configuration&gt;
+</pre>

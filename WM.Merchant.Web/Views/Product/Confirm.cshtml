@@ -1,0 +1,57 @@
+﻿@model WM.Merchant.Models.CreateOrderRequest
+@{
+    ViewBag.Title = "Xác nhận đơn hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Xác nhận đơn hàng</h2>
+<p>&nbsp;</p>
+@using (Html.BeginForm("Pay", "Product", FormMethod.Post))
+{
+<div class="row">
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <td><b>Tên sản phẩm:</b></td>
+                <td>Apple IPhone 6S 64GB</td>
+            </tr>
+            <tr>
+                <td><b>Tổng tiền:</b></td>
+                <td>@Html.DisplayFor(model=>model.TotalAmount, new { @class= "col-3-xs"})</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="row">
+    <div class="col-12-xs">
+        
+            <div class="form-group">
+                <label class="col-3-xs" for="custName">Tên khách hàng</label>
+                @Html.TextBoxFor(model=>model.CustomerName, new {@class= "col-9-xs form-control" })
+            </div>
+            <div class="form-group">
+                <label class="col-3-xs" for="custAddress">Địa chỉ</label>
+                @Html.TextBoxFor(model => model.CustomerAddress, new { @class = "col-9-xs form-control" })
+                
+            </div>
+            <div class="form-group">
+                <label class="col-3-xs" for="custEmail">Email</label>
+                @Html.TextBoxFor(model => model.CustomerEmail, new { @class = "col-9-xs form-control" })
+                
+            </div>
+            <div class="form-group">
+                <label class="col-3-xs" for="custGender">Giới tính</label>
+                @Html.DropDownListFor(model => model.CustomerGender, null, new { @class = "col-9-xs form-control" })
+            </div>
+            <div class="form-group">
+                <label class="col-3-xs" for="custPhone">Số điện thoại</label>
+                @Html.TextBoxFor(model => model.CustomerPhone, new { @class = "col-9-xs form-control" })
+                
+            </div>
+            <button type="submit" class="btn btn-primary">Thanh toán</button>
+     
+    </div>
+</div>
+}
+
+

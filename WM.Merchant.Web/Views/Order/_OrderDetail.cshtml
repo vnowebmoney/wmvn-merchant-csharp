@@ -1,0 +1,76 @@
+﻿@{ 
+    var response = (WM.Merchant.WMResponseHandler<WM.Merchant.Models.ViewOrderResponse>)ViewData["Response"];
+    WM.Merchant.Models.ViewOrderResponse responseObject = null;
+    if (!response.IsError())
+    {
+        responseObject = (WM.Merchant.Models.ViewOrderResponse)response.Object;
+    }
+}
+<div class="row">
+    <div class="col-12-xs">
+        <h4>Response Code</h4>
+        <table class="table table-striped">
+            <tr>
+                <td><b>Error Code:</b></td>
+                <td>@response.ErrorCode.ToString()</td>
+            </tr>
+            <tr>
+                <td><b>Message:</b></td>
+                <td>@response.Message </td>
+            </tr>
+            <tr>
+                <td><b>UI Message:</b></td>
+                <td>@response.UIMessage </td>
+            </tr>
+        @if (!response.IsError())
+        {
+            <tr>
+                <td><b>@Html.DisplayNameFor(model => responseObject.TransactionID) </b></td>
+                <td>@responseObject.TransactionID </td>
+            </tr>   
+            <tr>
+                <td><b>@Html.DisplayNameFor(model => responseObject.InvoiceID) </b></td>
+                <td>@responseObject.InvoiceID </td>
+            </tr> 
+            <tr>
+                <td><b>@Html.DisplayNameFor(model => responseObject.CustomerName) </b></td>
+                <td>@responseObject.CustomerName </td>
+            </tr> 
+            <tr>
+                <td><b>@Html.DisplayNameFor(model => responseObject.CustomerAddress) </b></td>
+                <td>@responseObject.CustomerAddress </td>
+            </tr> 
+            <tr>
+                <td><b>@Html.DisplayNameFor(model => responseObject.CustomerEmail) </b></td>
+                <td>@responseObject.CustomerEmail </td>
+            </tr> 
+            <tr>
+                <td><b>@Html.DisplayNameFor(model => responseObject.CustomerGender) </b></td>
+                <td>@responseObject.CustomerGender </td>
+            </tr> 
+            <tr>
+                <td><b>@Html.DisplayNameFor(model => responseObject.CustomerPhone) </b></td>
+                <td>@responseObject.CustomerPhone</td>
+            </tr> 
+            <tr>
+                <td><b>@Html.DisplayNameFor(model => responseObject.Description) </b></td>
+                <td>@responseObject.Description </td>
+            </tr> 
+            <tr>
+                <td><b>@Html.DisplayNameFor(model => responseObject.TotalAmount) </b></td>
+                <td>@responseObject.TotalAmount.ToString() </td>
+            </tr> 
+            <tr>
+                <td><b>@Html.DisplayNameFor(model => responseObject.AdditionalInfo) </b></td>
+                <td>@string.Join(";", responseObject.AdditionalInfo.Select(x => x.Key + "=" + x.Value)) </td>
+            </tr> 
+            <tr>
+                <td><b>@Html.DisplayNameFor(model => responseObject.Status) </b></td>
+                <td>@responseObject.Status </td>
+            </tr> 
+        }
+        </table>
+    </div>
+</div>
+
+
