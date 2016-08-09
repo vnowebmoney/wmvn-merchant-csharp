@@ -90,6 +90,10 @@ namespace WM.Merchant
             this.SecretKey = Config.Service.SecretKey;
             this.MerchantCode = Config.Service.MerchantCode;
             this.ProductionMode = Config.Service.ProductionMode;
+            
+            
+
+            
             this.IsLocalTest = Config.Service.IsLocalTest;
         }
 
@@ -121,7 +125,10 @@ namespace WM.Merchant
         /// <returns></returns>
         public string CreateURL(string actionName)
         {
-            return this.APIHOST_URL + "/" + actionName;
+            string mode = "sandbox";
+            if (this.ProductionMode)
+                mode = "payment";
+            return this.APIHOST_URL + "/" + mode + "/" + actionName;
         }
 
         /// <summary>
