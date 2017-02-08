@@ -30,9 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\GITHUB\wmvn-merchant-csharp0308_completed\wmvn-merchant-csharp\WM.Merchant\bin\Debug\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\NLog.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -52,6 +55,10 @@
     <Compile Include="Base\WMResponseError.cs" />
     <Compile Include="Base\WMResponseHandler.cs" />
     <Compile Include="Base\WMRequestModel.cs" />
+    <Compile Include="Helpers\ErrorHandler.cs" />
+    <Compile Include="Helpers\Log.cs" />
+    <Compile Include="Models\Request\UpdateOrderRequest.cs" />
+    <Compile Include="Models\Response\UpdateOrderResponse.cs" />
     <Compile Include="Service\WMService.cs" />
     <Compile Include="Helpers\NetHelper.cs" />
     <Compile Include="Helpers\SecurityHelper.cs" />
