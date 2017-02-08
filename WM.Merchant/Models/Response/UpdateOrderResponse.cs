@@ -9,11 +9,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WM.Merchant.Models
 {
-    public class ViewOrderResponse
+    public class UpdateOrderResponse
     {
         [JsonProperty("transactionID")]
         [Display(Name = "Transaction ID")]
         public string TransactionID { set; get; }
+
+        [JsonProperty("mTransactionID")]
+        public string mTransactionID { set; get; }
 
         [JsonProperty("invoiceID")]
         [Display(Name = "Invoice ID")]
