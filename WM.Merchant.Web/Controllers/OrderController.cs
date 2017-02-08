@@ -44,10 +44,44 @@ namespace WM.Merchant.Web.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        public ActionResult Update(string transactionID, string status)
+        {
+            var model = new UpdateOrderRequest();
+            var modelView = new ViewOrderRequest();
+            var modelViewResponse = new WMResponseHandler<ViewOrderResponse>();
+
+            model.TransactionID = transactionID;
+            model.status = status;
+
+            var response = Service.UpdateOrder(model);
+
+            if (!response.IsError())
+            {
+                modelViewResponse.Object = new ViewOrderResponse();
+                modelViewResponse.Object.AdditionalInfo = response.Object.AdditionalInfo;
+                modelViewResponse.Object.CustomerAddress = response.Object.CustomerAddress;
+                modelViewResponse.Object.CustomerEmail = response.Object.CustomerEmail;
+                modelViewResponse.Object.CustomerGender = response.Object.CustomerGender;
+                modelViewResponse.Object.CustomerName = response.Object.CustomerName;
+                modelViewResponse.Object.CustomerPhone = response.Object.CustomerPhone;
+                modelViewResponse.Object.Description = response.Object.Description;
+                modelViewResponse.Object.InvoiceID = response.Object.InvoiceID;
+                modelViewResponse.Object.Status = response.Object.Status;
+                modelViewResponse.Object.TotalAmount = response.Object.TotalAmount;
+                modelViewResponse.Object.TransactionID = response.Object.TransactionID;
+
+                modelView.MerchantTransactionID = response.Object.mTransactionID;
+                ViewData["Response"] = modelViewResponse;
+            }
+            
+            return View("Detail", modelView);
+        }
+
 
         public ActionResult Detail()
         {
-            var model = new ViewOrderRequest();
+            var model = new ViewOrderRequest();            
 
             return View(model);
         }
