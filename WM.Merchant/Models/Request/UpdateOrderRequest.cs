@@ -10,12 +10,13 @@ using WM.Merchant.Base;
 
 namespace WM.Merchant.Models
 {
-    public class ViewOrderRequest : WMRequestModel
+    public class UpdateOrderRequest : WMRequestModel
     {
-       
-        [JsonProperty("mTransactionID")]
-        [Display(Name = "Merchant Transaction ID")]
-        public string MerchantTransactionID { set; get; }
+        [JsonProperty("transactionID")]
+        public string TransactionID { set; get; }
+
+        [JsonProperty("status")]
+        public string status { get; set; }
 
         /// <summary>
         /// Return unique message to hash checksum
@@ -23,7 +24,7 @@ namespace WM.Merchant.Models
         /// <returns>string</returns>
         public override string HashMessage()
         {
-            return this.MerchantTransactionID;
+            return this.TransactionID + this.status;
         }
     }
 }

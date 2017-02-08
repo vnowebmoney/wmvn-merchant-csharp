@@ -39,6 +39,10 @@ namespace WM.Merchant.Models
         [Display(Name = "Customer Phone")]
         public string CustomerPhone { set; get; }
 
+        [JsonProperty("custPurse")]
+        [Display(Name = "Customer Purse")]
+        public string CustomerPurse { set; get; }
+
         [JsonProperty("description")]
         [Display(Name = "Description")]
         public string Description { set; get; }
@@ -77,8 +81,9 @@ namespace WM.Merchant.Models
         /// <returns>string</returns>
         public override string HashMessage()
         {
+            //this.CustomerPurse = "84898451889";
             return this.MerchantTransactionID + this.TotalAmount + this.CustomerName + this.CustomerAddress
-                + this.CustomerGender + this.CustomerEmail + this.CustomerPhone + this.ResultURL
+                + this.CustomerGender + this.CustomerEmail + this.CustomerPhone + this.CustomerPurse + this.ResultURL
                 + this.Description + this.ClientIP + this.UserAgent;
         }
     }
