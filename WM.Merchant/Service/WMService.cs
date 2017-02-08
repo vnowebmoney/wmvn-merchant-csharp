@@ -220,20 +220,29 @@ namespace WM.Merchant
         /// <returns>Respones Handler</returns>
         public WMResponseHandler<CreateOrderResponse> CreateOrder(CreateOrderRequest model)
         {
-            var httpRequest = HttpContext.Current.Request;
-            string url = this.CreateURL("create-order");
-            var request = this.CreateRequest(url);
+            try
+            {
+                var httpRequest = HttpContext.Current.Request;
+                string url = this.CreateURL("create-order");
+                var request = this.CreateRequest(url);
 
-            model.ClientIP = NetHelper.GetClientIPAddress();
-            model.UserAgent = httpRequest.UserAgent;
-            model.HashChecksum(this);
+                model.ClientIP = NetHelper.GetClientIPAddress();
+                model.UserAgent = httpRequest.UserAgent;
+                model.HashChecksum(this);
+                
+                string jsonText = JsonConvert.SerializeObject(model);
+                string jsonResponse = NetHelper.HttpRequest(request, jsonText);
 
-            string jsonText = JsonConvert.SerializeObject(model);
-            string jsonResponse = NetHelper.HttpRequest(request, jsonText);
+                Log.Error("jsonResponse {0} - json text {1}", jsonResponse, jsonText);
 
-            var response = WMResponseHandler<CreateOrderResponse>.Load(jsonResponse);
-
-            return response;
+                var response = WMResponseHandler<CreateOrderResponse>.Load(jsonResponse);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                Log.Instance.Error("Payment error: {0}" + ex.Message);
+                return null;
+            }
         }
 
         /// <summary>
@@ -252,6 +261,21 @@ namespace WM.Merchant
             string jsonResponse = NetHelper.HttpRequest(request, jsonText);
 
             var response = WMResponseHandler<ViewOrderResponse>.Load(jsonResponse);
+
+            return response;
+        }
+
+        public WMResponseHandler<UpdateOrderResponse> UpdateOrder(UpdateOrderRequest model)
+        {
+            string url = this.CreateURL("update-order");
+            var request = this.CreateRequest(url);
+            
+            model.HashChecksum(this);
+
+            string jsonText = JsonConvert.SerializeObject(model);
+            string jsonResponse = NetHelper.HttpRequest(request, jsonText);
+
+            var response = WMResponseHandler<UpdateOrderResponse>.Load(jsonResponse);
 
             return response;
         }
